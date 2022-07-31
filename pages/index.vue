@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-screen h-screen items-center justify-center">
-    <div>gm</div>
+    <nuxt-link to="v0" class="text-white">gm</nuxt-link>
   </div>
 </template>
 
