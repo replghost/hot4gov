@@ -1,14 +1,28 @@
 <template>
   <client-only>
   <div id="app">
+    <div class="flex justify-center mb-1">
+      <h1 class="text-gray-700 text-xs">Treasury Tinder V0</h1>
+    </div>
     <Tinder ref="tinder" key-name="id" :queue.sync="queue" :offset-y="10" @submit="onSubmit">
       <template slot-scope="scope">
         <div
-          class="pic"
+          class="pic p-8 flex items-center justify-center"
           :style="{
-            'background-image': `url(https://cn.bing.com//th?id=OHR.${scope.data.id}_UHD.jpg&pid=hp&w=720&h=1280&rs=1&c=4&r=0)`
+            'background-image': `url(https://bing.com/th?id=OHR.${scope.data.id}_UHD.jpg&pid=hp&w=720&h=1280&rs=1&c=4&r=0)`
           }"
-        />
+        >
+          <div class="bg-white rounded p-4" v-if="scope.data.beneficiary">
+            <div>Beneficiary</div>
+            <div class="font-bold">{{ scope.data.beneficiary }}</div>
+            <div class="mt-2">Reason</div>
+            <div class="font-bold">{{ scope.data.reason }}<br /></div>
+            <div class="mt-2">Value</div>
+            <div class="font-bold">{{ scope.data.valueDot }} ({{ scope.data.valueUSD }})</div>
+            <!-- {{ scope }} -->
+          </div>
+          
+        </div>
       </template>
       <img class="like-pointer" slot="like" src="@/assets/images/like-txt.png">
       <img class="nope-pointer" slot="nope" src="@/assets/images/nope-txt.png">
@@ -29,6 +43,7 @@
 <script>
 import Tinder from "vue-tinder";
 import source from "@/bing";
+import tips from "@/treasurytips";
 
 export default {
   name: "App",
@@ -39,13 +54,33 @@ export default {
     history: []
   }),
   created() {
-    this.mock();
+    // this.mock();
+    this.mockWithTips();
   },
   methods: {
     mock(count = 5, append = true) {
       const list = [];
       for (let i = 0; i < count; i++) {
-        list.push({ id: source[this.offset] });
+        list.push({ id: source[this.offset], index: this.offset });
+        this.offset++;
+      }
+      if (append) {
+        this.queue = this.queue.concat(list);
+      } else {
+        this.queue.unshift(...list);
+      }
+    },
+    mockWithTips(count = 15, append = false) {
+      const list = [];
+      for (let i = 0; i < count; i++) {
+        list.push({ 
+          id: source[this.offset], 
+          index: this.offset, 
+          beneficiary: tips[this.offset].beneficiary,
+          reason: tips[this.offset].reason,
+          valueDot: tips[this.offset].valueDot,
+          valueUSD: tips[this.offset].valueUSD,
+        });
         this.offset++;
       }
       if (append) {
@@ -70,7 +105,7 @@ export default {
       } else {
         this.$refs.tinder.decide(choice);
       }
-    }
+    },
   }
 };
 </script>

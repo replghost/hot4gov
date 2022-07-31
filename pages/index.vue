@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>hot4gov</h1>
+  <div class="flex w-screen h-screen items-center justify-center">
+    <div>gm</div>
   </div>
 </template>
 
