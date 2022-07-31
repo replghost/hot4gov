@@ -23,7 +23,8 @@
           </div>
           <div class="bg-white rounded p-4 font-bold" v-else>
             <img src="@/assets/images/hot4gov-logo.png" class="w-32 justify-around mb-4">
-            You've exhausted your matches for today.<br /><br /> Come back tomorrow, or <a class="underline" target="_blank" href="https://polkadot.js.org/apps/#/treasury/tips">submit your own tip proposal</a> to the Polkadot Treasury.
+            You've exhausted your matches for today.<br /><br /> Come back tomorrow, or <a class="underline" target="_blank" href="https://polkadot.js.org/apps/#/treasury/tips">submit your own tip proposal</a> to the Polkadot Treasury.<br /><br /><span class="text-gray-500 font-light italic">Inspired by <a class="underline" target="_blank" href="https://github.com/jonathanpdunne">jonathanpdunne</a>'s idea for Treasury Tinder!</span></span>
+
           </div>
           
         </div>

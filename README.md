@@ -1,5 +1,7 @@
 # hot4gov
 
+Inspired by [jonathanpdunne](https://github.com/jonathanpdunne)'s idea for Treasury Tinder!
+
 ## Build Setup
 
 ```bash
