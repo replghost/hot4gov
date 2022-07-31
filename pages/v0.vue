@@ -2,7 +2,7 @@
   <client-only>
   <div id="app">
     <div class="flex justify-center mb-1">
-      <h1 class="text-gray-700 text-xs">Treasury Tinder V0</h1>
+      <h1 class="text-gray-500 text-xs">Treasury Tinder V0</h1>
     </div>
     <Tinder ref="tinder" key-name="id" :queue.sync="queue" :offset-y="10" @submit="onSubmit">
       <template slot-scope="scope">
@@ -12,7 +12,7 @@
             'background-image': `url(https://bing.com/th?id=OHR.${scope.data.id}_UHD.jpg&pid=hp&w=720&h=1280&rs=1&c=4&r=0)`
           }"
         >
-          <div class="bg-white rounded p-4" v-if="scope.data.beneficiary">
+          <div class="bg-white rounded p-4 m-4" v-if="scope.data.beneficiary">
             <div>Beneficiary</div>
             <div class="font-bold">{{ scope.data.beneficiary }}</div>
             <div class="mt-2">Reason</div>
@@ -20,6 +20,10 @@
             <div class="mt-2">Value</div>
             <div class="font-bold">{{ scope.data.valueDot }} ({{ scope.data.valueUSD }})</div>
             <!-- {{ scope }} -->
+          </div>
+          <div class="bg-white rounded p-4 font-bold" v-else>
+            <img src="@/assets/images/hot4gov-logo.png" class="w-32 justify-around mb-4">
+            You've exhausted your matches for today.<br /><br /> Come back tomorrow, or <a class="underline" target="_blank" href="https://polkadot.js.org/apps/#/treasury/tips">submit your own tip proposal</a> to the Polkadot Treasury.
           </div>
           
         </div>
@@ -101,7 +105,7 @@ export default {
           this.$refs.tinder.rewind([this.history.pop()]);
         }
       } else if (choice === "help") {
-        window.open("https://shanlh.github.io/vue-tinder");
+        // window.open("https://www.google.com");
       } else {
         this.$refs.tinder.decide(choice);
       }
